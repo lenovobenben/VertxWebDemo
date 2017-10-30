@@ -8,6 +8,10 @@ import io.vertx.ext.web.Router;
 public class MyVerticle extends AbstractVerticle {
     @Override
     public void start() throws Exception {
+        // 初始化 mybatis
+        MybatisHelper.ins().init();
+
+        // 初始化 web
         HttpServer server = vertx.createHttpServer();
         Router router = Router.router(vertx);
         MyRouter.initRouter(router);

@@ -8,6 +8,11 @@ ext {
     vertxVersion = '3.3.3'
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
 dependencies {
 
     // vertx
@@ -21,7 +26,6 @@ dependencies {
 
     // DB
     compile 'mysql:mysql-connector-java:5.1.40'
-    compile 'com.zaxxer:HikariCP:2.5.1'
     compile 'org.mybatis:mybatis:3.4.1'
     compile "redis.clients:jedis:2.7.0"
 
