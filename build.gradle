@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.13'
+
+    compile 'io.vertx:vertx-web:3.3.3',
+    'mysql:mysql-connector-java:5.1.24',
+    'io.vertx:vertx-jdbc-client:3.3.3',
+    'io.vertx:vertx-hazelcast:3.3.3',
+    'org.mybatis:mybatis:3.2.6',
+    'org.quartz-scheduler:quartz:2.2.1'
+}
