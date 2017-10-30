@@ -4,15 +4,35 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.13'
+ext {
+    vertxVersion = '3.3.3'
+}
 
-    compile 'io.vertx:vertx-web:3.3.3',
-    'mysql:mysql-connector-java:5.1.24',
-    'io.vertx:vertx-jdbc-client:3.3.3',
-    'io.vertx:vertx-hazelcast:3.3.3',
-    'org.mybatis:mybatis:3.2.6',
-    'org.quartz-scheduler:quartz:2.2.1'
+dependencies {
+
+    // vertx
+    compile "io.vertx:vertx-codegen:$vertxVersion"
+    compile "io.vertx:vertx-core:$vertxVersion"
+    compile "io.vertx:vertx-hazelcast:$vertxVersion"
+    compile "io.vertx:vertx-web:$vertxVersion"
+    compile("io.vertx:vertx-service-proxy:$vertxVersion") {
+        exclude module: 'vertx-lang-js'
+    }
+
+    // DB
+    compile 'mysql:mysql-connector-java:5.1.40'
+    compile 'com.zaxxer:HikariCP:2.5.1'
+    compile 'org.mybatis:mybatis:3.4.1'
+    compile "redis.clients:jedis:2.7.0"
+
+    // 日志
+    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
+    compile 'org.apache.logging.log4j:log4j-core:2.7'
+
+
+    // 其他
+    compile "org.quartz-scheduler:quartz:2.2.1"
+
 }
 
 task wrapper(type: Wrapper) {
