@@ -14,7 +14,7 @@ public abstract class BaseDbHandler implements Handler<RoutingContext>{
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public final void handle(RoutingContext rc) {
-
+        logger.info("request: " + rc.getBodyAsString());
         rc.response().putHeader("Content-type", "application/json;charset=utf-8");
 
         String ret = null;
@@ -22,6 +22,7 @@ public abstract class BaseDbHandler implements Handler<RoutingContext>{
         SqlSession s = MybatisHelper.ins().getSession();
         try {
             ret = biz(rc.getBodyAsString(),s);
+            logger.info("response: " + ret);
             s.commit();
         } catch (Exception e) {
             s.rollback();
