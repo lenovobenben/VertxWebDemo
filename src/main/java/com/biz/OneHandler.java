@@ -9,7 +9,8 @@ import java.util.Map;
 public class OneHandler extends BaseDbHandler {
     @Override
     protected String biz(String postData, SqlSession s) throws Exception {
-        Map<String,Object> data = s.selectOne("com.user.UserMapper.getUserInfo",1);
+        JsonObject jo = new JsonObject(postData);
+        Map<String,Object> data = s.selectOne("com.user.UserMapper.getUserInfo",jo.getInteger("userId"));
         return new JsonObject(data).encode();
     }
 }
