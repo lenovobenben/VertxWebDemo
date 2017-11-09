@@ -31,6 +31,6 @@ public class Util {
 
 
     public static void initHandler(Router r, String uri, Handler<RoutingContext> handler) {
-        r.route(uri).blockingHandler(handler);
+        r.route(uri).blockingHandler(handler,false);
     }
 }
