@@ -1,5 +1,7 @@
 package com.core;
 
+import com.utils.Const;
+import com.utils.Util;
 import io.vertx.core.Handler;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
@@ -14,29 +16,23 @@ public abstract class BaseDbHandler implements Handler<RoutingContext>{
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public final void handle(RoutingContext rc) {
-        logger.info("request: " + rc.getBodyAsString());
-        rc.response().putHeader("Content-type", "application/json;charset=utf-8");
-
-        String ret = null;
-
+        MyRc myRc = new MyRc(rc);
         SqlSession s = MybatisHelper.ins().getSession();
         try {
-            ret = biz(rc.getBodyAsString(),s);
-            logger.info("response: " + ret);
+            biz(myRc,s);
             s.commit();
         } catch (Exception e) {
             s.rollback();
             logger.error("",e);
-            rc.fail(500);
-            return;
         } finally {
             s.close();
         }
 
-        if (ret!=null) {
-            rc.response().end(ret);
+        if (myRc.getStatus()==200) {
+            rc.put(Const.RESP,myRc.getRespData());
+            rc.next();
         } else {
-            rc.fail(500);
+            Util.handlerFail(rc,myRc.getStatus());
         }
     }
 
@@ -45,6 +41,6 @@ public abstract class BaseDbHandler implements Handler<RoutingContext>{
      * 实现类中不要catch异常，否则SQL无法回滚
      * 实现类不要用异步方法
      */
-    abstract protected String biz(String postData, SqlSession s) throws Exception;
+    abstract protected void biz(MyRc myRc, SqlSession s) throws Exception;
 
 }

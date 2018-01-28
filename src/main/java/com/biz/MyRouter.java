@@ -7,7 +7,7 @@ import io.vertx.ext.web.Router;
 public class MyRouter {
 
     public static void initRouter(Router r){
-        Util.initHandler(r,"/t",new OneHandler());
+        Util.initBlockHandler(r,"/t",new OneHandler());
         // TODO 业务逻辑
 
     }
