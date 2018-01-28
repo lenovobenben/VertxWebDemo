@@ -48,6 +48,7 @@ public abstract class BaseDbHandler implements Handler<RoutingContext>{
      * 实现类中不要catch异常，否则SQL无法回滚
      * 实现类不要用异步方法
      * 一般不建议调用 rollback / commit ，除非业务不在一个事务中！
+     * 不要调用 close ， SqlSession 会在外层 close
      */
     abstract protected void biz(MyRc myRc, SqlSession s) throws Exception;
 
