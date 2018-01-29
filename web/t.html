@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta id="viewport" name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
+    <script src="jquery-2.0.2.min.js"></script>
+    <script src="base64.js"></script>
+    <script type="text/javascript">
+
+        var u1 = "http://127.0.0.1:8888/t";
+
+        var param = {"userId": 1};
+        var jsonStr = JSON.stringify(param);
+        var reqData = new Base64().encode(jsonStr);
+
+        function c() {
+            $.ajax({
+                type: "POST",
+                url: u1,
+                data: reqData,
+                xhrFields: {withCredentials: true},
+                crossDomain: true,
+                success: function (respData) {
+                    if (respData != null) {
+                        console.log(respData);
+                    } else {
+                        alert("error!");
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<button type="button" onclick="c()">
+    点击测试吧！
+</button>
+</body>
+</html>
