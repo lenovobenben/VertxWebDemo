@@ -8,20 +8,23 @@
     <script src="base64.js"></script>
     <script type="text/javascript">
 
+        var base64 = new Base64();
+
         var u1 = "/t";
 
         var param = {"userId": 1};
         var jsonStr = JSON.stringify(param);
-        var reqData = new Base64().encode(jsonStr);
+        var reqData = base64.encode(jsonStr);
 
         function c() {
             $.ajax({
                 type: "POST",
                 url: u1,
                 data: reqData,
-                dataType:'text',
-                success:function(data){
-                    console.log(new Base64().decode(data));
+                dataType: 'text',
+                success: function (result) {
+                    var resp = base64.decode(result);
+                    console.log(JSON.parse(resp));
                 }
             });
         }
