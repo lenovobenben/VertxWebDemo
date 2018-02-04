@@ -8,7 +8,7 @@
     <script src="base64.js"></script>
     <script type="text/javascript">
 
-        var u1 = "http://127.0.0.1:8888/t";
+        var u1 = "/t";
 
         var param = {"userId": 1};
         var jsonStr = JSON.stringify(param);
@@ -19,14 +19,9 @@
                 type: "POST",
                 url: u1,
                 data: reqData,
-                xhrFields: {withCredentials: true},
-                crossDomain: true,
-                success: function (respData) {
-                    if (respData != null) {
-                        console.log(respData);
-                    } else {
-                        alert("error!");
-                    }
+                dataType:'text',
+                success:function(data){
+                    console.log(new Base64().decode(data));
                 }
             });
         }
@@ -34,7 +29,7 @@
 </head>
 <body>
 <button type="button" onclick="c()">
-    点击测试吧！
+    CLICK
 </button>
 </body>
 </html>

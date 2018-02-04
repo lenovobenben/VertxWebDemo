@@ -5,6 +5,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.StaticHandler;
 
 public class MyVerticle extends AbstractVerticle {
     @Override
@@ -15,6 +16,8 @@ public class MyVerticle extends AbstractVerticle {
         // 初始化 web
         HttpServer server = vertx.createHttpServer();
         Router router = Router.router(vertx);
+
+        router.route("/html/*").handler(StaticHandler.create());
 
         router.route().handler(BodyHandler.create().setUploadsDirectory("web/pic").setBodyLimit(1000*1000));
 
