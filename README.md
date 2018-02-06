@@ -2,16 +2,18 @@
 
 ## 项目意义
 vertx-web 集成 mybatis ，对 DB 事务进行了封装，一般业务无需关心数据库事务。  
-使之风格接近于 tomcat + ssm 。
+使之风格接近于 tomcat + ssm 。  
+这样做抹杀了 vertx 的异步回调特性，只需要写同步代码就可以了。  
+当然，如果您喜欢异步回调，直接调用 vertx 原生 API 即可，两者并不冲突。
 
 ## 一些说明
 
 需要准备测试表：  
-CREATE TABLE &apos;user&apos; (
-	&apos;id&apos; INT(11) NOT NULL AUTO_INCREMENT,
-	&apos;name&apos; VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	&apos;age&apos; INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (&apos;id&apos;)
+CREATE TABLE user (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	age INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (id)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
@@ -31,7 +33,7 @@ http://localhost:8888/html/t.html
 拦截器逻辑：  
 Interceptor 里一个 before ，一个 after 。
 
-Handler 相当于 SSM 的 Controller 层。
+Handler 相当于 SSM 的 Controller 层。  
 可以从中抽离出 Service 层，如果你喜欢。  
 可以抽离出 DAO 层，如果你喜欢。  
 
