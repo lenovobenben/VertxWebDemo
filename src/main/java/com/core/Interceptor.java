@@ -25,7 +25,7 @@ public class Interceptor {
 
         logger.info("request: " + rc.getBodyAsString());
 
-        rc.response().putHeader("Content-type", "application/json;charset=utf-8");
+        rc.response().putHeader("Content-type", "text/plain;charset=utf-8");
 
         // POST 解密
         String plainText;
