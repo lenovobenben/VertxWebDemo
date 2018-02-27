@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 /**
  * 业务代码示例
  */
-public class OneHandler extends BaseDbHandler {
+public class MyHandler1 extends BaseDbHandler {
     @Override
     protected void biz(MyRc myRc, SqlSession s) throws Exception {
         // 获得 post 数据

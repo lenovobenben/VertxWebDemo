@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 业务代码示例 2
  */
-public class One2Handler extends BaseHandler {
+public class MyHandler2 extends BaseHandler {
     @Override
     protected void biz(MyRc myRc) throws Exception {
         myRc.setRespData(new Date().toString());
