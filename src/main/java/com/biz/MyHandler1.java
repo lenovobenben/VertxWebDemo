@@ -17,7 +17,7 @@ public class MyHandler1 extends BaseDbHandler {
         // 获得 post 数据
         JsonObject jo = new JsonObject(myRc.getReqData());
         // 执行业务逻辑
-        UserInfo data = s.selectOne("com.user.UserMapper.getUserInfo",jo.getInteger("userId"));
+        UserInfo data = s.selectOne("UserMapper.getUserInfo",jo.getInteger("userId"));
         // 设置返回数据
         myRc.setRespData(Util.toJson(data));
     }
