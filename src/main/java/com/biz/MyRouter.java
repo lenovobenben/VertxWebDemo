@@ -1,15 +1,16 @@
 package com.biz;
 
+import com.core.RouterHelper;
 import com.utils.Util;
 import io.vertx.ext.web.Router;
 
 
 public class MyRouter {
 
-    public static void initRouter(Router r){
-        Util.initDbHandler(r,"/t",new MyHandler1());
+    public static void initRouter(){
+        RouterHelper.ins().mappingDbHandler("/t",new MyHandler1());
 
-        Util.initHandler(r,"/t2",new MyHandler2());
+        RouterHelper.ins().mappingHandler("/t2",new MyHandler2());
 
         // TODO 业务逻辑
 

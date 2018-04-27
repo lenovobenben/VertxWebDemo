@@ -17,16 +17,17 @@ public class MyVerticle extends AbstractVerticle {
         HttpServer server = vertx.createHttpServer();
         Router router = Router.router(vertx);
 
+        RouterHelper.ins().init(router);
+
         router.route("/html/*").handler(StaticHandler.create());
 
         router.route().handler(BodyHandler.create().setUploadsDirectory("web/pic").setBodyLimit(1000*1000));
 
         router.route().handler(Interceptor::before);
 
-        MyRouter.initRouter(router);
+        MyRouter.initRouter();
 
         router.route().handler(Interceptor::after);
-
 
         server.requestHandler(router::accept).listen(8888);
     }

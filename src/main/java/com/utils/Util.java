@@ -1,14 +1,10 @@
 package com.utils;
 
-import com.core.BaseDbHandler;
-import com.core.BaseHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.vertx.core.Handler;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
-import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
 public class Util {
@@ -32,26 +28,6 @@ public class Util {
     }
 
 
-    /**
-     * 设置一个阻塞的 handler 比如读写文件，redis 访问等
-     */
-    public static void initBHandler(Router r, String uri, Handler<RoutingContext> handler) {
-        r.route(uri).blockingHandler(handler,false);
-    }
-
-    /**
-     * 设置一个 DB handler
-     */
-    public static void initDbHandler(Router r, String uri, BaseDbHandler handler) {
-        r.route(uri).blockingHandler(handler,false);
-    }
-
-    /**
-     * 设置一个非阻塞的 handler
-     */
-    public static void initHandler(Router r, String uri, BaseHandler handler) {
-        r.route(uri).handler(handler);
-    }
 
     public static void handlerEnd(RoutingContext rc) {
 
