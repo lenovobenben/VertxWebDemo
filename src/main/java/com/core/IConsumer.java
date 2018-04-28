@@ -17,5 +17,5 @@ public interface IConsumer {
     /**
      * 服务处理逻辑
      */
-    void handle(Message<JsonObject> message);
+    void consumer(Message<JsonObject> message);
 }

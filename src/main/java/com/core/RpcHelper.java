@@ -24,7 +24,7 @@ public class RpcHelper {
      * 注册服务
      */
     public void regService(IConsumer service) {
-        this.vertx.eventBus().consumer(service.addr(),service::handle);
+        this.vertx.eventBus().consumer(service.addr(),service::consumer);
     }
 
 
@@ -32,7 +32,7 @@ public class RpcHelper {
      * 远程调用
      */
     public void rpc(JsonObject req, IProducer call){
-        this.vertx.eventBus().send(call.addr(),req,call::handler);
+        this.vertx.eventBus().send(call.addr(),req,call::callBack);
     }
 
 }

@@ -23,7 +23,7 @@ public class MyProducer implements IProducer {
     }
 
     @Override
-    public void handler(AsyncResult<Message<JsonObject>> ar) {
+    public void callBack(AsyncResult<Message<JsonObject>> ar) {
         if (ar.succeeded()) {
             logger.info(ar.result().body().encode());
             JsonObject result = ar.result().body().put("v3","IBM");

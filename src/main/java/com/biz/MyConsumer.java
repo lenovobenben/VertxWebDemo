@@ -16,8 +16,9 @@ public class MyConsumer implements IConsumer {
     }
 
     @Override
-    public void handle(Message<JsonObject> message) {
+    public void consumer(Message<JsonObject> message) {
         logger.info(message.body().encode());
+        // 一定要有 reply ！
         message.reply(message.body().put("v2","GOOGLE"));
     }
 

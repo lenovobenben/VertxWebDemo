@@ -18,5 +18,5 @@ public interface IProducer {
     /**
      * RPC 回调后的逻辑
      */
-    void handler (AsyncResult<Message<JsonObject>> ar);
+    void callBack (AsyncResult<Message<JsonObject>> ar);
 }
