@@ -1,12 +1,11 @@
 package com.biz;
 
-import com.core.IConsumer;
-import io.vertx.core.eventbus.Message;
+import com.core.BaseConsumer;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-public class MyConsumer implements IConsumer {
+public class MyConsumer extends BaseConsumer {
 
     private Logger logger = LoggerFactory.getLogger(MyConsumer.class);
 
@@ -16,10 +15,9 @@ public class MyConsumer implements IConsumer {
     }
 
     @Override
-    public void consumer(Message<JsonObject> message) {
-        logger.info(message.body().encode());
-        // 一定要有 reply ！
-        message.reply(message.body().put("v2","GOOGLE"));
+    public JsonObject consumer0(JsonObject req) {
+        logger.info(req.encode());
+        return req.put("v2","GOOGLE");
     }
 
 }

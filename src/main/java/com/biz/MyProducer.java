@@ -1,6 +1,6 @@
 package com.biz;
 
-import com.core.IProducer;
+import com.core.BaseProducer;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.Message;
@@ -8,13 +8,11 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-public class MyProducer implements IProducer {
+public class MyProducer extends BaseProducer {
     private Logger logger = LoggerFactory.getLogger(MyProducer.class);
 
-    Future<JsonObject> future;
-
     public MyProducer(Future future) {
-        this.future = future;
+        super(future);
     }
 
     @Override
