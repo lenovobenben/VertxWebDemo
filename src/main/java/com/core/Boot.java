@@ -13,5 +13,6 @@ public class Boot {
         // 部署verticle
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new MyVerticle());
+        vertx.deployVerticle(new MyVerticle2());
     }
 }
