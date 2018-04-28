@@ -13,6 +13,9 @@ public class MyVerticle extends AbstractVerticle {
         // 初始化 mybatis
         MybatisHelper.ins().init();
 
+        // 初始化 redis
+        MyRedisPool.ins().init();
+
         // 初始化 web
         HttpServer server = vertx.createHttpServer();
         Router router = Router.router(vertx);

@@ -1,8 +1,6 @@
 package com.biz;
 
 import com.core.RouterHelper;
-import com.utils.Util;
-import io.vertx.ext.web.Router;
 
 
 public class MyRouter {
@@ -11,6 +9,8 @@ public class MyRouter {
         RouterHelper.ins().mappingDbHandler("/t",new MyHandler1());
 
         RouterHelper.ins().mappingHandler("/t2",new MyHandler2());
+
+        RouterHelper.ins().mappingBHandler("/t3",new MyHandler3());
 
         // TODO 业务逻辑
 
