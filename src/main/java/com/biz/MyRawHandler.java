@@ -32,8 +32,12 @@ public class MyRawHandler {
         RpcHelper.ins().rpc(jsonObject.put("v1","APPLE"), new MyProducer(future));
 
         future.setHandler(t-> {
-            logger.info(t.result().encode());
-            rc.response().end(t.result().encode());
+            if (t.succeeded()) {
+                logger.info(t.result().encode());
+                rc.response().end(t.result().encode());
+            } else {
+                rc.fail(500);
+            }
         });
     }
 

@@ -28,6 +28,9 @@ public class MyProducer implements IProducer {
             logger.info(ar.result().body().encode());
             JsonObject result = ar.result().body().put("v3","IBM");
             future.complete(result);
+        } else {
+            logger.error("",ar.cause());
+            future.fail(ar.cause());
         }
     }
 }
