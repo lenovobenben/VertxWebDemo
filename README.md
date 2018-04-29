@@ -30,8 +30,12 @@ http://localhost:8888/html/t.html
 
 ## 我的逻辑代码怎么写？
 普通业务逻辑：  
-编写 Handler ，继承 BaseDbHandler 或 BaseHandler 。  
-在 MyRouter 中注册(即初始化)你写的 Handler。  
+
+同步 Handler ，继承 BaseDbHandler / BaseBlockHandler / BaseHandler 。逻辑里面不要写异步代码！！！  
+
+异步 Handler ，继续使用原生的 API 即可。
+
+在 MyRouter 中注册你写的 Handler。  
   
   
 拦截器逻辑：  
