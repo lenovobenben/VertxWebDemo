@@ -1,7 +1,6 @@
 package com.biz;
 
 import com.core.RpcHelper;
-import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
@@ -26,19 +25,19 @@ public class MyRawHandler {
 
     public void h1(RoutingContext rc) {
 
-        Future<JsonObject> future = Future.future();
         JsonObject jsonObject = new JsonObject();
         logger.info(jsonObject);
-        RpcHelper.ins().rpc(jsonObject.put("v1","APPLE"), new MyProducer(future));
-
-        future.setHandler(t-> {
+        RpcHelper.ins().rpc("ME", jsonObject.put("v1","APPLE"), t->{
             if (t.succeeded()) {
-                logger.info(t.result().encode());
-                rc.response().end(t.result().encode());
+                logger.info(t.result().body().encode());
+                t.result().body().put("v3","IBM");
+                logger.info(t.result().body().encode());
+                rc.response().end(t.result().body().encode());
             } else {
                 rc.fail(500);
             }
         });
+
     }
 
     // TODO

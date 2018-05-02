@@ -8,7 +8,7 @@ vertx-web 集成 mybatis ，对 DB 事务进行了封装，一般业务无需关
 
 阻塞的 Jedis API 支持。
 
-稍微封装了基于 EventBus 的异步 RPC 调用。只需要实现 IConsumer 和 IProducer 接口即可。
+稍微封装了基于 EventBus 的异步 RPC 调用。
 
 ## 一些说明
 

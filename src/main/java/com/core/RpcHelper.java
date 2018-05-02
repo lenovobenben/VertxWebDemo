@@ -1,6 +1,9 @@
 package com.core;
 
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 
 /**
@@ -27,12 +30,11 @@ public class RpcHelper {
         this.vertx.eventBus().consumer(service.addr(),service::consumer);
     }
 
-
     /**
      * 远程调用
      */
-    public void rpc(JsonObject req, IProducer call){
-        this.vertx.eventBus().send(call.addr(),req,call::callBack);
+    public void rpc (String addr, JsonObject req, Handler<AsyncResult<Message<JsonObject>>> replyHandler) {
+        this.vertx.eventBus().send(addr, req, replyHandler);
     }
 
 }
