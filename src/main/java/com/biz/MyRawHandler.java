@@ -27,7 +27,7 @@ public class MyRawHandler {
 
         JsonObject jsonObject = new JsonObject();
         logger.info(jsonObject);
-        RpcHelper.ins().rpc("ME", jsonObject.put("v1","APPLE"), t->{
+        RpcHelper.ins().rpc(RpcAddr.TEST, jsonObject.put("v1","APPLE"), t->{
             if (t.succeeded()) {
                 logger.info(t.result().body().encode());
                 t.result().body().put("v3","IBM");

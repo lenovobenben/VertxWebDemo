@@ -26,8 +26,8 @@ public class RpcHelper {
     /**
      * 注册服务
      */
-    public void regService(IConsumer service) {
-        this.vertx.eventBus().consumer(service.addr(),service::consumer);
+    public void regService(String addr, Handler<Message<JsonObject>> handler) {
+        this.vertx.eventBus().consumer(addr, handler);
     }
 
     /**
